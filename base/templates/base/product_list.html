@@ -7,7 +7,7 @@
 {% for product in products %}
 <h2>{{ product.name }}</h2>
 <h4>${{ product.price }}</h4>
-<p>{{ product.description }}</p>
+{{ product.description | linebreaks }}
 {% endfor %}
 
 {% endblock %}
