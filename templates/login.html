@@ -6,16 +6,6 @@
 <p>Your username and password don't match. Please try again.</p>
     {% endif %}
 
-    {% if next %}
-
-        {% if user.is_authenticated %}
-<p>Your account lacks the permissions to see this page.</p>
-        {% else %}
-<p>Please login to view this page.</p>
-        {% endif %}
-
-    {% endif %}
-
 
 <div class="container">
     <div class="row">
