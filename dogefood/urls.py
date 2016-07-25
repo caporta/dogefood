@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.contrib.auth import views
 
 urlpatterns = [
@@ -23,3 +24,5 @@ urlpatterns = [
     url(r'', include('log.urls')),
     url(r'^login/$', views.login, {'template_name': 'login.html'}),
 ]
+
+urlpatterns += staticfiles_urlpatterns()

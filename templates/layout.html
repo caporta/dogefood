@@ -1,19 +1,32 @@
-{% load static from staticfiles %}
+{% load staticfiles %}
 
 <!DOCTYPE html>
 <html>
+
     <head>
+
         <meta http-equiv="content-type" content="text/html; charset=utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <title>{% block title %}{% endblock %}</title>
 
-        <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet" media="screen"/>
+        <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.min.css"/>
+
     </head>
+
     <body>
-        <nav>
-            <a href="{% url 'home' %}">Home</a>
-            <a href="{% url 'products:list' %}">Products</a>
+
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a href="{% url 'home' %}">Home</a>
+                    <a href="{% url 'products:list' %}">Products</a>
+                </div>
+            </div>
         </nav>
+
         {% block content %}{% endblock %}
+
     </body>
+
 </html>
