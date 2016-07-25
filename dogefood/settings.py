@@ -27,6 +27,9 @@ DEBUG = os.environ.get('DJDEBUG', False)
 
 ALLOWED_HOSTS = ['test.chrisaporta.com', '127.0.0.1', 'localhost']
 
+# Redirects
+
+LOGIN_REDIRECT_URL = '/'
 
 # Application definition
 
