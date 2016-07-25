@@ -6,8 +6,8 @@
 
 {% for product in products %}
 <h2>{{ product.name }}</h2>
-<h4>{{ product.description }}</h4>
-<p>${{ product.price }}</p>
+<h4>${{ product.price }}</h4>
+<p>{{ product.description }}</p>
 {% endfor %}
 
 {% endblock %}
