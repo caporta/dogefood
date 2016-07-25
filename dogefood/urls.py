@@ -15,11 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
-from . import views
+from django.contrib.auth import views
 
 urlpatterns = [
     url(r'^products/', include('base.urls', namespace='products')),
     url(r'^admin/', admin.site.urls),
-    url(r'^$', views.welcome, name='home'),
+    url(r'', include('log.urls')),
+    url(r'^login/$', views.login, {'template_name': 'login.html'}),
 ]
