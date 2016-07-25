@@ -45,7 +45,7 @@ class ProductViewsTests(TestCase):
         self.assertEqual(resp.status_code, 200)
         self.assertIn(self.product, resp.context['products'])
         self.assertIn(self.product2, resp.context['products'])
-        self.assertTemplateUsed(resp, 'base/product_list.html')
+        self.assertTemplateUsed(resp, 'store/product_list.html')
         self.assertContains(resp, self.product.name)
 
     def test_product_detail_view(self):
@@ -54,5 +54,5 @@ class ProductViewsTests(TestCase):
         )
         self.assertEqual(resp.status_code, 200)
         self.assertEqual(self.product, resp.context['product'])
-        self.assertTemplateUsed(resp, 'base/product_detail.html')
+        self.assertTemplateUsed(resp, 'store/product_detail.html')
         self.assertContains(resp, self.product.name)

@@ -8,10 +8,10 @@ from .models import Product
 @login_required(login_url='/login/')
 def product_list(request):
     products = Product.objects.all()
-    return render(request, 'base/product_list.html', {'products': products})
+    return render(request, 'store/product_list.html', {'products': products})
 
 
 @login_required(login_url='/login/')
 def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    return render(request, 'base/product_detail.html', {'product': product})
+    return render(request, 'store/product_detail.html', {'product': product})
