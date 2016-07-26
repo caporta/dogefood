@@ -15,27 +15,6 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-# class User(models.Model):
-    # user = models.OneToOneField(User)
-    # first_name = models.CharField(max_length=255)
-    # last_name = models.CharField(max_length=255)
-    # email = models.EmailField()
-
-
-# class Pet(models.Model):
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
-    # name = models.CharField(max_length=255)
-    # pet_type = models.CharField(max_length=255)
-    # sex = models.CharField(max_length=10)
-    # age = models.IntegerField()
-    # weight = models.IntegerField()
-    # owner_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
-    # breed_id = models.ForeignKey(Breed, on_delete=models.CASCADE)
-
-# class Breed(models.Model):
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
 
 # class Cart(models.Model):
     # created_at = models.DateTimeField(auto_now_add=True)
