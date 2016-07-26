@@ -20,15 +20,18 @@ class UserProfile(AbstractAddress, models.Model):
         return self.username
 
 
-# class Pet(models.Model):
-    # created_at = models.DateTimeField(auto_now_add=True)
-    # updated_at = models.DateTimeField(auto_now=True)
-    # name = models.CharField(max_length=255)
-    # pet_type = models.CharField(max_length=255)
-    # breed = models.CharField(max_length=255)
-    # sex = models.CharField(max_length=10)
-    # age = models.IntegerField()
-    # weight = models.IntegerField()
-    # owner_id = models.ForeignKey(Owner, on_delete=models.CASCADE)
+class Pet(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    name = models.CharField(max_length=255)
+    pet_type = models.CharField(max_length=255)
+    breed = models.CharField(max_length=255)
+    sex = models.CharField(blank=True, max_length=10)
+    age = models.IntegerField(blank=True)
+    weight = models.IntegerField(blank=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name
 
 

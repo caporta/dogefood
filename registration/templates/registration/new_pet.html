@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading">
+
+                    <h3 class="panel-title">Register Your Pet!</h3>
+                    <form id="pet_form" action="/registration/new-pet/" method="POST">
+                        {% csrf_token %}
+                        {{ pet_form.as_p }}
+                    <p class="bs-component">
+                        <center>
+                            <input class="btn btn-success btn-sm" type="submit" name="submit" value="Register">
+                        </center>
+                    </p>
+                    <p>
+                        <center>
+                            <a href="{% url 'home' %}">I'll take care of this later ></a>
+                        </center>
+                    </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

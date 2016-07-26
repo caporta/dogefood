@@ -1,11 +1,12 @@
-from django.http import HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, render_to_response
 
-from .forms import UserForm, UserProfileForm
+from .forms import UserForm, UserProfileForm, PetForm
 
-def register(request):
+def register_user(request):
     context = RequestContext(request)
     registered = False
 
@@ -38,4 +39,26 @@ def register(request):
     return render_to_response('registration/new_user.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered}, context)
 
 
+def register_pet(request):
+    context = RequestContext(request)
+    registered = False
 
+    if request.method == 'POST':
+        pet_form = PetForm(data=request.POST)
+
+        if pet_form.is_valid():
+            # commit=False allows us to delay saving until manually setting user attr
+            pet = pet_form.save(commit=False)
+            pet.owner = request.user
+            pet.save()
+
+            registered = True
+
+            return HttpResponseRedirect(reverse('home'))
+
+        else:
+            print('pet_form.errors')
+    else:
+        pet_form = PetForm()
+
+    return render_to_response('registration/new_pet.html', {'pet_form': pet_form, 'registered': registered}, context)
