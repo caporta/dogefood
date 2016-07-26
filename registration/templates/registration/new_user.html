@@ -6,7 +6,19 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
+
+                    {% if registered or user.is_authenticated %}
+                    <h3 class="panel-title">Thanks for Registering!</h3>
+                    <a href="{% url 'home' %}">Go to your dashboard ></a>
+                {% else %}
                     <h3 class="panel-title">Register Here</h3>
+                    <form id="user_form" action="/registration/new-user/" method="POST">
+                        {% csrf_token %}
+                        {{ user_form.as_p }}
+                        {{ profile_form.as_p }}
+                        <input class="btn btn-success btn-sm" type="submit" name="submit" value="Register">
+                    </form>
+                {% endif %}
                 </div>
             </div>
         </div>

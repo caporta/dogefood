@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.template import RequestContext
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, render_to_response
 
 from .forms import UserForm, UserProfileForm
@@ -23,6 +24,11 @@ def register(request):
             profile.save()
 
             registered = True
+
+            user = authenticate(username=user_form.cleaned_data['username'],
+                                password=user_form.cleaned_data['password'],
+                                )
+            login(request, user)
         else:
             print('user_form.errors, profile_form.errors')
     else:
