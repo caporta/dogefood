@@ -16,7 +16,16 @@
                         {% csrf_token %}
                         {{ user_form.as_p }}
                         {{ profile_form.as_p }}
-                        <input class="btn btn-success btn-sm" type="submit" name="submit" value="Register">
+                    <p class="bs-component">
+                        <center>
+                            <input class="btn btn-success btn-sm" type="submit" name="submit" value="Register">
+                        </center>
+                    </p>
+                    <p>
+                        <center>
+                            <a href="/login">Already a Dogefood user? Sign in here ></a>
+                        </center>
+                    </p>
                     </form>
                 {% endif %}
                 </div>
