@@ -36,7 +36,7 @@ def register_user(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render('registration/new_user.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
+    return render(request, 'registration/new_user.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
 def register_pet(request):
@@ -60,4 +60,4 @@ def register_pet(request):
     else:
         pet_form = PetForm()
 
-    return render('registration/new_pet.html', {'pet_form': pet_form, 'registered': registered})
+    return render(request, 'registration/new_pet.html', {'pet_form': pet_form, 'registered': registered})
