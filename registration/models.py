@@ -17,7 +17,7 @@ class UserProfile(AbstractAddress, models.Model):
     user = models.OneToOneField(User)
 
     def __str__(self):
-        return self.username
+        return self.user.username
 
 
 class Pet(models.Model):

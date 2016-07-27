@@ -16,12 +16,20 @@ Welcome to Dogefood!
                 </div>
                 <div class="panel-body">
                     <p class="panel-text">{{ pet.breed }}</p>
+                    {% if pet.weight < 30 %}
+                        <a href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>
+                    {% elif pet.weight >= 30 and pet.weight < 50 %}
+                        <a href="{% url 'products:detail' pk=2 %}">Suggested formula ></a>
+                    {% else %}
+                        <a href="{% url 'products:detail' pk=3 %}">Suggested formula ></a>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
-    <h3><a href="{% url 'registration:new_pet' %}">Register a new pet ></a></h3>
+    <h3><a href="{% url 'registration:new_pet' %}">Register a New Pet ></a></h3>
+    <h3><a href="{% url 'products:list' %}">See Our Products ></a></h3>
 </div>
 {% endblock %}
 

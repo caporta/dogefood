@@ -4,11 +4,15 @@
 
 {% block content %}
 <div class="container">
-    <div class="text-center">
-        <h2>{{ product.name }}</h2>
-        <h4>${{ product.price }}</h4>
-        {{ product.description | linebreaks }}
-        <a href="{% url 'products:list' %}">Back to Products ></a>
+    <div class="panel panel-primary text-center">
+        <div class="panel-heading">
+            <h2 class="panel-title">{{ product.name }}</h2>
+        </div>
+        <div class="panel-body">
+            <h4 class="panel-text">${{ product.price }}</h4>
+            <p class="panel-text">{{ product.description }}</p>
+            <a href="{% url 'products:list' %}">Back to Products ></a>
+        </div>
     </div>
 </div>
 {% endblock %}
