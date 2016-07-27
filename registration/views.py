@@ -2,12 +2,11 @@ from django.core.urlresolvers import reverse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib.auth import authenticate, login
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render
 
 from .forms import UserForm, UserProfileForm, PetForm
 
 def register_user(request):
-    context = RequestContext(request)
     registered = False
 
     if request.method == 'POST':
@@ -37,11 +36,10 @@ def register_user(request):
         user_form = UserForm()
         profile_form = UserProfileForm()
 
-    return render_to_response('registration/new_user.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered}, context)
+    return render('registration/new_user.html', {'user_form': user_form, 'profile_form': profile_form, 'registered': registered})
 
 
 def register_pet(request):
-    context = RequestContext(request)
     registered = False
 
     if request.method == 'POST':
@@ -62,4 +60,4 @@ def register_pet(request):
     else:
         pet_form = PetForm()
 
-    return render_to_response('registration/new_pet.html', {'pet_form': pet_form, 'registered': registered}, context)
+    return render('registration/new_pet.html', {'pet_form': pet_form, 'registered': registered})
