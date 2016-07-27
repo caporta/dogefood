@@ -31,7 +31,8 @@ def register_user(request):
                                 )
             login(request, user)
         else:
-            print('user_form.errors, profile_form.errors')
+            print(user_form.errors)
+            print(profile_form.errors)
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
@@ -57,7 +58,7 @@ def register_pet(request):
             return HttpResponseRedirect(reverse('home'))
 
         else:
-            print('pet_form.errors')
+            print(pet_form.errors)
     else:
         pet_form = PetForm()
 
