@@ -4,7 +4,6 @@ from django.contrib.auth.decorators import login_required
 from .models import Product
 
 
-# Create your views here.
 @login_required(login_url='/login/')
 def product_list(request):
     products = Product.objects.all()
