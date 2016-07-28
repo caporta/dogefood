@@ -1,7 +1,9 @@
 *.egg-info
 *.pot
 *.py[co]
+*.swp
 .tox/
+.coverage
 __pycache__
 MANIFEST
 dist/
