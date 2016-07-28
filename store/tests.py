@@ -1,6 +1,7 @@
 from django.core.urlresolvers import reverse
-from django.test import TestCase
+from django.test import TestCase, Client
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 from .models import Product
 
@@ -16,13 +17,20 @@ class ProductModelTests(TestCase):
             weight='30.00',
         )
 
-
     def test_product_creation(self):
         now = timezone.now()
         self.assertLess(self.product.created_at, now)
 
 class ProductViewsTests(TestCase):
     def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create(
+            username = 'user1',
+            password = 'password',
+        )
+
+        self.client.force_login(self.user)
+
         self.product = Product.objects.create(
             sku='foo-bar-baz-quux-grn',
             name='Green Label',
