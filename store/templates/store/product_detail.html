@@ -11,7 +11,8 @@
         <div class="panel-body">
             <h4 class="panel-text">${{ product.price }}</h4>
             <p class="panel-text">{{ product.description }}</p>
-            <a href="{% url 'products:list' %}">Back to Products ></a>
+            <a href="{% url 'products:list' %}">View All Products ></a>
+            <a href="{% url 'home' %}">&#60; Back to Dashboard</a>
         </div>
     </div>
 </div>
