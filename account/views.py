@@ -8,3 +8,6 @@ def home(request):
     pets = request.user.pet_set.all()
     return render(request, 'home.html', {'pets': pets})
 
+
+def pet_update(request, pk, template_name=''):
+    pass

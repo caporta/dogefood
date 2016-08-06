@@ -15,7 +15,11 @@ Welcome to Dogefood!
                     <h4 class="panel-title">{{ pet.name }}</h4>
                 </div>
                 <div class="panel-body">
-                    <p class="panel-text">{{ pet.breed }}</p>
+                    <p class="panel-text">Breed: {{ pet.breed }}</p>
+                    <p class="panel-text">Sex: {{ pet.sex }}</p>
+                    <p class="panel-text">Age: {{ pet.age }}</p>
+                    <p class="panel-text">Weight: {{ pet.weight }}lbs.</p>
+                    <p class="panel-text"><a href="">Edit pet stats ></a></p>
                     {% if pet.weight < 30 %}
                         <a href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>
                     {% elif pet.weight >= 30 and pet.weight < 50 %}
