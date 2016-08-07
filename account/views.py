@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.template import RequestContext
 from django.template.loader import render_to_string
@@ -25,8 +25,18 @@ def pet_form(request, pk):
     if request.method == 'POST':
         form = PetForm(request.POST or None, instance=pet)
         if form.is_valid():
+            resp_data = {}
             form.save()
-            return redirect('/')
+
+            resp_data['name'] = pet.name
+            resp_data['pet_type'] = pet.pet_type
+            resp_data['breed'] = pet.breed
+            resp_data['sex'] = pet.sex
+            resp_data['age'] = pet.age
+            resp_data['weight'] = pet.weight
+
+            return JsonResponse(resp_data)
+
         # html = render_to_string(template_name, {'form': form, 'petpk': pk}, context_instance=RequestContext(request))
         # return HttpResponse(html)
 
