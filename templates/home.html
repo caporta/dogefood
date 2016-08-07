@@ -10,16 +10,20 @@ Welcome to Dogefood!
     <div class="row">
         {% for pet in pets %}
         <div class="col-md-4">
-            <div class="panel panel-primary">
+            <div id="js--pet-info-panel-{{pet.pk}}" class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">{{ pet.name }}</h4>
+                    <div class="js--pet-name">
+                        <h4 class="panel-title">{{ pet.name }}</h4>
+                    </div>
                 </div>
                 <div class="panel-body">
-                    <p class="panel-text">Breed: {{ pet.breed }}</p>
-                    <p class="panel-text">Sex: {{ pet.sex }}</p>
-                    <p class="panel-text">Age: {{ pet.age }}</p>
-                    <p class="panel-text">Weight: {{ pet.weight }}lbs.</p>
-                    <p class="panel-text"><a href="">Edit pet stats ></a></p>
+                    <div class="js--pet-stats">
+                        <p class="panel-text">Breed: {{ pet.breed }}</p>
+                        <p class="panel-text">Sex: {{ pet.sex }}</p>
+                        <p class="panel-text">Age: {{ pet.age }}</p>
+                        <p class="panel-text">Weight: {{ pet.weight }}lbs.</p>
+                    </div>
+                    <p class="panel-text"><a id="js--get-pet-form-{{pet.pk}}" data-toggle="modal" data-target="#js--pet-form-modal" href="{% url 'pet_form' pk=pet.pk %}">Edit pet stats ></a></p>
                     {% if pet.weight < 30 %}
                         <a href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>
                     {% elif pet.weight >= 30 and pet.weight < 50 %}
@@ -34,6 +38,24 @@ Welcome to Dogefood!
     </div>
     <h3><a href="{% url 'registration:new_pet' %}">Register a New Pet ></a></h3>
     <h3><a href="{% url 'products:list' %}">See Our Products ></a></h3>
+
+    <!-- Pet Form Modal -->
+    <div id="js--pet-form-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="pet-form-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close"><span aria-hidden="true">&times;</span></button>
+                </div>
+                <div id="js--pet-form-target" class="modal-body">
+
+                    <!-- Ajax GET Target -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Pet Form Modal -->
+
 </div>
 {% endblock %}
 
