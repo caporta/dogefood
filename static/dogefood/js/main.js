@@ -14,7 +14,7 @@ window.Dogefood = {};
             type: 'GET',
 
             success: function (data) {
-                $('body').append(data);
+                $('#js--pet-form-target').empty().append(data);
             }
         });
     }
@@ -26,5 +26,8 @@ window.Dogefood = {};
         getPetForm(pk);
     });
 
+    $('body').on('hidden.bs.modal', '.modal', function () {
+        $(this).removeData('bs.modal');
+    });
 
 })();
