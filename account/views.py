@@ -15,6 +15,7 @@ def home(request):
     return render(request, 'home.html', {'pets': pets})
 
 
+@login_required(login_url='login/')
 def pet_form(request, pk):
     template_name = 'pet_form.html'
     pet = get_object_or_404(Pet, pk=pk)
