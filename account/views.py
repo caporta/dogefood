@@ -38,8 +38,22 @@ def pet_form(request, pk):
 
             return JsonResponse(resp_data)
 
-        # html = render_to_string(template_name, {'form': form, 'petpk': pk}, context_instance=RequestContext(request))
-        # return HttpResponse(html)
+
+@login_required(login_url='login/')
+def delete_pet(request, pk):
+    template_name = 'confirm_delete.html'
+    pet = get_object_or_404(Pet, pk=pk)
+    if request.method == 'GET':
+        html = render_to_string(template_name, {'petpk': pk}, context_instance=RequestContext(request))
+        return HttpResponse(html)
+    if request.method == 'POST':
+        pet.delete()
+
+        resp_data = {}
+        resp_data['msg'] = 'Your pet has been successfully deleted.'
+
+        return JsonResponse(resp_data)
+
 
 
 

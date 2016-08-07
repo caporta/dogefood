@@ -1,0 +1,12 @@
+<div class="login-panel panel panel-default">
+    <div class="panel-heading">
+        <form action="pet/delete/{{petpk}}" id="delete-pet" method="POST">
+            {% csrf_token %}
+            <p>Are you sure you want to delete this pet?<p>
+            <p>
+                <input class="btn btn-success btn-sm" type="submit" value="Yes, I'm sure!"/>
+                <input id="js--cancel-delete" class="btn btn-danger btn-sm" type="button" value="No!!! Are you crazy???"/>
+            </p>
+        </form>
+    </div>
+</div>

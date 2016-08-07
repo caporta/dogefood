@@ -22,6 +22,22 @@ window.Dogefood = {};
                 }
             });
         };
+        this.getDeleteConfirmation = function (primaryKey) {
+            $.ajax({
+                url: 'pet/delete/' + primaryKey,
+                type: 'GET',
+
+                success: function (data) {
+                    $('#js--pet-form-target').append(data);
+                    $('body').on('click', '#js--cancel-delete', function (e) {
+                        $('#js--pet-form-modal').modal('hide');
+                    });
+                },
+                error: function (xhr) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        };
         this.updatePet = function (primaryKey) {
             $.ajax({
                 url: 'pet/update/' + primaryKey,
@@ -53,6 +69,23 @@ window.Dogefood = {};
                 }
             });
         };
+        this.deletePet = function (primaryKey) {
+            $.ajax({
+                url: 'pet/delete/' + primaryKey,
+                type: 'POST',
+                data: {
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                },
+
+                success: function (data) {
+                    $('#js--pet-form-modal').modal('hide');
+                    $('#js--pet-info-panel-' + primaryKey).hide();
+                },
+                error: function (xhr) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                }
+            });
+        };
         this.bindGetFormOnClick = function () {
             $('div[id^=js--pet-info-panel-]').on('click', 'a[id^=js--get-pet-form-]', function (e) {
                 var pk = $(this).attr('id').split('-')[5];
@@ -60,11 +93,25 @@ window.Dogefood = {};
                 that.getPetForm(pk);
             });
         };
+        this.bindGetDeleteConfOnClick = function () {
+            $('div[id^=js--pet-info-panel-]').on('click', 'a[id^=js--delete-pet-conf-]', function (e) {
+                var pk = $(this).attr('id').split('-')[5];
+                e.preventDefault();
+                that.getDeleteConfirmation(pk);
+            });
+        };
         this.bindUpdateOnSubmit = function () {
             $('body').on('submit', '#pet-form', function (e) {
                 e.preventDefault();
                 var pk = $(this).attr('action').split('/')[2];
                 that.updatePet(pk);
+            });
+        };
+        this.bindDeleteOnSubmit = function () {
+            $('body').on('submit', '#delete-pet', function (e) {
+                e.preventDefault();
+                var pk = $(this).attr('action').split('/')[2];
+                that.deletePet(pk);
             });
         };
         this.dumpModalContents = function () {
@@ -76,7 +123,9 @@ window.Dogefood = {};
 
     var petForm = new Dogefood.constructors.PetForm();
     petForm.bindGetFormOnClick();
+    petForm.bindGetDeleteConfOnClick();
     petForm.bindUpdateOnSubmit();
+    petForm.bindDeleteOnSubmit();
     petForm.dumpModalContents();
 
 })();
