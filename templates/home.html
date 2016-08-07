@@ -12,13 +12,17 @@ Welcome to Dogefood!
         <div class="col-md-4">
             <div id="js--pet-info-panel-{{pet.pk}}" class="panel panel-primary">
                 <div class="panel-heading">
-                    <h4 class="panel-title">{{ pet.name }}</h4>
+                    <div class="js--pet-name">
+                        <h4 class="panel-title">{{ pet.name }}</h4>
+                    </div>
                 </div>
                 <div class="panel-body">
-                    <p class="panel-text">Breed: {{ pet.breed }}</p>
-                    <p class="panel-text">Sex: {{ pet.sex }}</p>
-                    <p class="panel-text">Age: {{ pet.age }}</p>
-                    <p class="panel-text">Weight: {{ pet.weight }}lbs.</p>
+                    <div class="js--pet-stats">
+                        <p class="panel-text">Breed: {{ pet.breed }}</p>
+                        <p class="panel-text">Sex: {{ pet.sex }}</p>
+                        <p class="panel-text">Age: {{ pet.age }}</p>
+                        <p class="panel-text">Weight: {{ pet.weight }}lbs.</p>
+                    </div>
                     <p class="panel-text"><a id="js--get-pet-form-{{pet.pk}}" data-toggle="modal" data-target="#js--pet-form-modal" href="{% url 'pet_form' pk=pet.pk %}">Edit pet stats ></a></p>
                     {% if pet.weight < 30 %}
                         <a href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>

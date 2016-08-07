@@ -38,6 +38,16 @@ window.Dogefood = {};
 
             success: function (data) {
                 console.log(data);
+                $('#js--pet-form-modal').modal('hide');
+                $('#js--pet-info-panel-' + primaryKey + ' .js--pet-name').html(
+                    '<h4 class="panel-title">' + data['name'] + '</h4>'
+                );
+                $('#js--pet-info-panel-' + primaryKey + ' .js--pet-stats').html(
+                    '<p class="panel-text">Breed: ' + data['breed'] + '</p>' +
+                    '<p class="panel-text">Sex: ' + data['sex'] + '</p>' +
+                    '<p class="panel-text">Age: ' + data['age'] + '</p>' +
+                    '<p class="panel-text">Weight: ' + data['weight'] + 'lbs.</p>'
+                );
             },
             error: function (xhr) {
                 console.log(xhr.status + ": " + xhr.responseText);

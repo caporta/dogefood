@@ -1,5 +1,12 @@
-<form action="pet/update/{{petpk}}" id="pet-form" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Update">
-</form>
+<div class="login-panel panel panel-default">
+    <div class="panel-heading">
+        <h2 class="panel-title text-center">Update your pet's information!</h2>
+        <form action="pet/update/{{petpk}}" id="pet-form" method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <p class="text-center p-2-1">
+                <input class="btn btn-success btn-sm" type="submit" value="Update">
+            </p>
+        </form>
+    </div>
+</div>
