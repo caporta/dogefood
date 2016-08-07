@@ -10,7 +10,7 @@ Welcome to Dogefood!
     <div class="row">
         {% for pet in pets %}
         <div class="col-md-4">
-            <div class="panel panel-primary">
+            <div id="js--pet-info-panel-{{pet.pk}}" class="panel panel-primary">
                 <div class="panel-heading">
                     <h4 class="panel-title">{{ pet.name }}</h4>
                 </div>
@@ -19,7 +19,7 @@ Welcome to Dogefood!
                     <p class="panel-text">Sex: {{ pet.sex }}</p>
                     <p class="panel-text">Age: {{ pet.age }}</p>
                     <p class="panel-text">Weight: {{ pet.weight }}lbs.</p>
-                    <p class="panel-text"><a href="">Edit pet stats ></a></p>
+                    <p class="panel-text"><a id="js--get-pet-form-{{pet.pk}}" href="{% url 'pet_form' pk=pet.pk %}">Edit pet stats ></a></p>
                     {% if pet.weight < 30 %}
                         <a href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>
                     {% elif pet.weight >= 30 and pet.weight < 50 %}
