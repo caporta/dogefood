@@ -58,11 +58,11 @@ window.Dogefood = {};
                         '<p class="panel-text">Weight: ' + data['weight'] + 'lbs.</p>'
                     );
                     if (data['weight'] < 30) {
-                        $('#js--suggested-formula').attr('href', 'products/1');
+                        $('#js--suggested-formula-' + primaryKey).attr('href', 'products/1');
                     } else if (data['weight'] >= 30 && data['weight'] < 50) {
-                        $('#js--suggested-formula').attr('href', 'products/2');
+                        $('#js--suggested-formula-' + primaryKey).attr('href', 'products/2');
                     } else {
-                        $('#js--suggested-formula').attr('href', 'products/3');
+                        $('#js--suggested-formula-' + primaryKey).attr('href', 'products/3');
                     }
                 },
                 error: function (xhr) {
