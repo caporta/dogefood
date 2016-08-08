@@ -9,35 +9,29 @@ window.Dogefood = {};
 
     Dogefood.constructors.PetForm = function () {
         var that = this;
-        this.getPetForm = function (primaryKey) {
+
+        this.getForm = function (primaryKey, crudAction) {
+            var action = crudAction.toLowerCase();
             $.ajax({
-                url: 'pet/update/' + primaryKey,
+                url: 'pet/' + action + '/' + primaryKey,
                 type: 'GET',
 
                 success: function (data) {
                     $('#js--pet-form-target').append(data);
+
+                    if (action == 'delete') {
+                        $('#js--pet-form-target').append(data);
+                        $('body').on('click', '#js--cancel-delete', function (e) {
+                            $('#js--pet-form-modal').modal('hide');
+                        });
+                    }
                 },
                 error: function (xhr) {
                     console.log(xhr.status + ": " + xhr.responseText);
                 }
             });
         };
-        this.getDeleteConfirmation = function (primaryKey) {
-            $.ajax({
-                url: 'pet/delete/' + primaryKey,
-                type: 'GET',
 
-                success: function (data) {
-                    $('#js--pet-form-target').append(data);
-                    $('body').on('click', '#js--cancel-delete', function (e) {
-                        $('#js--pet-form-modal').modal('hide');
-                    });
-                },
-                error: function (xhr) {
-                    console.log(xhr.status + ": " + xhr.responseText);
-                }
-            });
-        };
         this.updatePet = function (primaryKey) {
             $.ajax({
                 url: 'pet/update/' + primaryKey,
@@ -69,6 +63,7 @@ window.Dogefood = {};
                 }
             });
         };
+
         this.deletePet = function (primaryKey) {
             $.ajax({
                 url: 'pet/delete/' + primaryKey,
@@ -86,46 +81,42 @@ window.Dogefood = {};
                 }
             });
         };
-        this.bindGetFormOnClick = function () {
-            $('div[id^=js--pet-info-panel-]').on('click', 'a[id^=js--get-pet-form-]', function (e) {
+
+        this.bindGetOnClick = function (target, crudAction) {
+            $('div[id^=js--pet-info-panel-]').on('click', target, function (e) {
                 var pk = $(this).attr('id').split('-')[5];
                 e.preventDefault();
-                that.getPetForm(pk);
+                that.getForm(pk, crudAction);
             });
         };
-        this.bindGetDeleteConfOnClick = function () {
-            $('div[id^=js--pet-info-panel-]').on('click', 'a[id^=js--delete-pet-conf-]', function (e) {
-                var pk = $(this).attr('id').split('-')[5];
-                e.preventDefault();
-                that.getDeleteConfirmation(pk);
-            });
-        };
-        this.bindUpdateOnSubmit = function () {
-            $('body').on('submit', '#pet-form', function (e) {
+
+        this.bindPostOnSubmit = function (target, crudAction) {
+            $('body').on('submit', target, function (e) {
                 e.preventDefault();
                 var pk = $(this).attr('action').split('/')[2];
-                that.updatePet(pk);
+                if (crudAction.toLowerCase() == 'update') {
+                    that.updatePet(pk);
+                } else if (crudAction.toLowerCase() == 'delete') {
+                    that.deletePet(pk);
+                } else {
+                    console.log(action + 'is invalid.');
+                }
             });
         };
-        this.bindDeleteOnSubmit = function () {
-            $('body').on('submit', '#delete-pet', function (e) {
-                e.preventDefault();
-                var pk = $(this).attr('action').split('/')[2];
-                that.deletePet(pk);
-            });
-        };
+
         this.dumpModalContents = function () {
             $('body').on('hidden.bs.modal', '.modal', function () {
                 $(this).removeData('bs.modal');
             });
-        }
+        };
+
     };
 
     var petForm = new Dogefood.constructors.PetForm();
-    petForm.bindGetFormOnClick();
-    petForm.bindGetDeleteConfOnClick();
-    petForm.bindUpdateOnSubmit();
-    petForm.bindDeleteOnSubmit();
+    petForm.bindGetOnClick('a[id^=js--get-pet-form-]', 'update');
+    petForm.bindGetOnClick('a[id^=js--delete-pet-conf-]', 'delete');
+    petForm.bindPostOnSubmit('#pet-form', 'update');
+    petForm.bindPostOnSubmit('#delete-pet', 'delete');
     petForm.dumpModalContents();
 
 })();
