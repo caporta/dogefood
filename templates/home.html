@@ -9,8 +9,8 @@ Welcome to Dogefood!
     <h1>My Pets</h1>
     <div class="row">
         {% for pet in pets %}
-        <div class="col-md-4">
-            <div id="js--pet-info-panel-{{pet.pk}}" class="panel panel-primary">
+        <div id="js--pet-info-panel-{{pet.pk}}" class="col-md-4">
+            <div class="panel panel-primary">
                 <div class="panel-heading">
                     <div class="js--pet-name">
                         <h4 class="panel-title">{{ pet.name }}</h4>

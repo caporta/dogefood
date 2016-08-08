@@ -74,7 +74,7 @@ window.Dogefood = {};
 
                 success: function (data) {
                     $('#js--pet-form-modal').modal('hide');
-                    $('#js--pet-info-panel-' + primaryKey).hide();
+                    $('#js--pet-info-panel-' + primaryKey).remove();
                 },
                 error: function (xhr) {
                     console.log(xhr.status + ": " + xhr.responseText);
