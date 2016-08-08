@@ -26,11 +26,11 @@ Welcome to Dogefood!
                     <p class="panel-text"><a id="js--get-pet-form-{{pet.pk}}" data-toggle="modal" data-target="#js--pet-form-modal" href="{% url 'pet_form' pk=pet.pk %}">Edit pet stats ></a></p>
                     <p class="panel-text"><a id="js--delete-pet-conf-{{pet.pk}}" data-toggle="modal" data-target="#js--pet-form-modal" href="{% url 'delete_pet' pk=pet.pk %}">Delete pet?</a></p>
                     {% if pet.weight < 30 %}
-                        <a href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>
+                        <a id="js--suggested-formula" href="{% url 'products:detail' pk=1 %}">Suggested formula ></a>
                     {% elif pet.weight >= 30 and pet.weight < 50 %}
-                        <a href="{% url 'products:detail' pk=2 %}">Suggested formula ></a>
+                        <a id="js--suggested-formula" href="{% url 'products:detail' pk=2 %}">Suggested formula ></a>
                     {% else %}
-                        <a href="{% url 'products:detail' pk=3 %}">Suggested formula ></a>
+                        <a id="js--suggested-formula" href="{% url 'products:detail' pk=3 %}">Suggested formula ></a>
                     {% endif %}
                 </div>
             </div>
